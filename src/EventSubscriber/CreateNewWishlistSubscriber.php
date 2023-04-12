@@ -69,7 +69,7 @@ final class CreateNewWishlistSubscriber implements EventSubscriberInterface
         if (!$event->isMainRequest()) {
             return;
         }
-
+        return;
         /** @var WishlistInterface[] $wishlists */
         $wishlists = $this->wishlistsResolver->resolve();
 
@@ -93,7 +93,7 @@ final class CreateNewWishlistSubscriber implements EventSubscriberInterface
         if (!$event->isMainRequest()) {
             return;
         }
-
+        return;
         if ($event->getRequest()->cookies->has($this->wishlistCookieToken)) {
             return;
         }
