@@ -60,10 +60,12 @@ final class AddProductToWishlistHandler implements MessageHandlerInterface
 
         $wishlistProduct = $this->wishlistProductFactory->createForWishlistAndProduct($wishlist, $product);
 
-        $wishlist->addWishlistProduct($wishlistProduct);
+        if(!$wishlist->hasProduct($product)) {
+            $wishlist->addWishlistProduct($wishlistProduct);
 
-        $this->wishlistManager->persist($wishlistProduct);
-        $this->wishlistManager->flush();
+            $this->wishlistManager->persist($wishlistProduct);
+            $this->wishlistManager->flush();
+        }
 
         return $wishlist;
     }
